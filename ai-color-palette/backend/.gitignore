@@ -1,0 +1,15 @@
+# Go依赖
+vendor/
+
+# Go模块缓存
+go.sum
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 构建输出
+dist/
+bin/
