@@ -58,13 +58,13 @@ export default {
       default: 0
     }
   },
-  emits: ['copy'],
+  emits: ['copy', 'notify'],
   methods: {
     copyToClipboard(color) {
       navigator.clipboard.writeText(color).then(() => {
-        alert(`已复制: ${color}`)
+        this.$emit('notify', { message: `已复制: ${color}`, type: 'success' })
       }).catch(() => {
-        alert('复制失败')
+        this.$emit('notify', { message: '复制失败', type: 'error' })
       })
     },
     formatTime(timestamp) {

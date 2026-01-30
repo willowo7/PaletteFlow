@@ -12,6 +12,7 @@
           :colors="currentColors"
           :prompt="currentPrompt"
           :timestamp="currentTimestamp"
+          @notify="showNotification"
         />
       </div>
 
@@ -204,7 +205,8 @@ export default {
       handleGenerate,
       handleSelectHistory,
       handleCheckContrast,
-      handleCheckColorblind
+      handleCheckColorblind,
+      showNotification
     }
   }
 }
