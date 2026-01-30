@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"ai-color-palette/config"
 	"ai-color-palette/handler"
 
 	"github.com/gin-contrib/cors"
@@ -10,6 +11,9 @@ import (
 )
 
 func main() {
+	// 加载配置
+	config.LoadConfig()
+
 	router := gin.Default()
 
 	// 配置CORS

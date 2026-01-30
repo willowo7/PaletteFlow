@@ -2,9 +2,12 @@ package handler
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"time"
+
+	"ai-color-palette/ai"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +22,7 @@ type ColorPaletteResponse struct {
 	Description string   `json:"description"`
 }
 
-// 模拟生成配色方案
+// GeneratePaletteHandler 使用AI生成配色方案，失败时降级到随机生成
 func GeneratePaletteHandler(c *gin.Context) {
 	var req ColorPaletteRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -27,9 +30,14 @@ func GeneratePaletteHandler(c *gin.Context) {
 		return
 	}
 
-	// 模拟AI生成配色：根据提示词长度和字符生成伪随机色彩
-	rand.Seed(time.Now().UnixNano())
-	colors := generateRandomColors(5, req.Prompt)
+	// 尝试使用AI生成配色
+	colors, err := ai.GenerateColorPalette(req.Prompt)
+	if err != nil {
+		log.Printf("AI generation failed: %v, falling back to random generation", err)
+		// 降级到随机生成
+		rand.Seed(time.Now().UnixNano())
+		colors = generateRandomColors(5, req.Prompt)
+	}
 
 	response := ColorPaletteResponse{
 		Colors:      colors,

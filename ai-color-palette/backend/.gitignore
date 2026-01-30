@@ -13,3 +13,8 @@ go.sum
 # 构建输出
 dist/
 bin/
+*.exe
+server
+
+# 环境变量（包含API密钥）
+.env
