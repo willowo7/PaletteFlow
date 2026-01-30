@@ -1,9 +1,6 @@
 # Go依赖
 vendor/
 
-# Go模块缓存
-go.sum
-
 # IDE
 .vscode/
 .idea/
