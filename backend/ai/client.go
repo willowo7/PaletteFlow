@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"regexp"
 	"strings"
@@ -106,7 +107,7 @@ func GenerateColorPalette(prompt string) ([]string, error) {
 	if len(colors) < 5 {
 		return nil, fmt.Errorf("AI returned insufficient colors: got %d, expected 5", len(colors))
 	}
-
+	log.Println("[INFO] AI Generated Successfully")
 	// 取前5个颜色
 	return colors[:5], nil
 }

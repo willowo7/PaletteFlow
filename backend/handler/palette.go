@@ -31,9 +31,10 @@ func GeneratePaletteHandler(c *gin.Context) {
 	}
 
 	// 尝试使用AI生成配色
+	log.Printf("[INFO] Using %s to create colors:\n", req.Prompt)
 	colors, err := ai.GenerateColorPalette(req.Prompt)
 	if err != nil {
-		log.Printf("AI generation failed: %v, falling back to random generation", err)
+		log.Printf("[ERROR] AI generation failed: %v, falling back to random generation", err)
 		// 降级到随机生成
 		rand.Seed(time.Now().UnixNano())
 		colors = generateRandomColors(5, req.Prompt)
