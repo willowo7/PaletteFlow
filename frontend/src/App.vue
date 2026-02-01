@@ -181,7 +181,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.font.im/css?family=Playfair+Display:600,700');
 .app-container {
   position: relative;
   width: 100vw;
